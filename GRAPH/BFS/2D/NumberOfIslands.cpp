@@ -76,3 +76,86 @@ int main() {
 
     return 0;
 }
+
+
+//LEETCODE QUESTION
+
+class Solution {
+public:
+
+int n,m;
+int dx[8]={-1,1,0,0,-1,-1,1,1};
+int dy[8]={0,0,-1,1,-1,1,-1,1};
+bool vis[301][301];
+
+bool valid(int x,int y, vector<vector<char> >& grid)
+{
+
+ return (x>=0 && x<n && y>=0 && y<m && !vis[x][y] && grid[x][y]=='1');
+
+}
+void bfs(int r,int c,vector<vector<char>>& grid)
+{
+ 
+     vis[r][c]=1;
+     queue<pair<int,int> >q;
+
+     q.push({r,c});
+
+     while(!q.empty())
+     {
+        int r=q.front().first;
+         int c=q.front().second;
+         q.pop();
+
+
+         for(int i=0;i<4;i++)
+     {
+        int nr=r+dx[i];
+        int nc=c+dy[i];
+       
+       if(valid(nr,nc,grid))
+       {
+         
+       
+
+        vis[nr][nc]=1;
+        q.push({nr,nc});
+       }
+       
+     }
+
+     }
+
+     
+
+     
+}
+
+    int numIslands(vector<vector<char>>& grid) {
+       
+        
+          n=grid.size();
+           m=grid[0].size();
+       
+        int cnt=0;
+
+       for(int i=0;i<n;i++)
+       {
+
+        for(int j=0;j<m;j++)
+       {
+        
+            if(!vis[i][j] && grid[i][j]=='1')
+            {
+                 cnt++;
+                bfs(i,j,grid);
+               
+            }
+       }
+
+       }
+        
+    return cnt;
+    }
+};

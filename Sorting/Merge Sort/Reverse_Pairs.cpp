@@ -1,7 +1,5 @@
-
-
-#include <bits/stdc++.h>
-using namespace std;
+class Solution {
+public:
 
 void merge(vector<int> &arr, int low, int mid, int high) {
     vector<int> temp; // temporary array
@@ -40,29 +38,31 @@ void merge(vector<int> &arr, int low, int mid, int high) {
     }
 }
 
-void mergeSort(vector<int> &arr, int low, int high) {
-    if (low >= high) return;
+int countPairs(vector<int> &arr, int low, int mid, int high) {
+    int right = mid + 1;
+    int cnt = 0;
+    for (int i = low; i <= mid; i++) {
+        while (right <= high && arr[i] > 2 * (long) arr[right]) right++;
+        cnt += (right - (mid + 1));
+    }
+    return cnt;
+}
+
+int mergeSort(vector<int> &arr, int low, int high) {
+    int cnt = 0;
+    if (low >= high) return cnt;
     int mid = (low + high) / 2 ;
-    mergeSort(arr, low, mid);  // left half
-    mergeSort(arr, mid + 1, high); // right half
+    cnt += mergeSort(arr, low, mid);  // left half
+    cnt += mergeSort(arr, mid + 1, high); // right half
+    cnt += countPairs(arr, low, mid, high); //Modification
     merge(arr, low, mid, high);  // merging sorted halves
+    return cnt;
 }
 
-int main() {
 
-    vector<int> arr = {9, 4, 7, 6, 3, 1, 5}  ;
-    int n = 7;
+    int reversePairs(vector<int>& nums) {
 
-    cout << "Before Sorting Array: " << endl;
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " "  ;
+       return  mergeSort(nums,0, nums.size()-1);
+
     }
-    cout << endl;
-    mergeSort(arr, 0, n - 1);
-    cout << "After Sorting Array: " << endl;
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " "  ;
-    }
-    cout << endl;
-    return 0 ;
-}
+};

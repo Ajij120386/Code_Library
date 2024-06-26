@@ -8,23 +8,28 @@ class Node{
     Node* prev;
     Node* next;
 
-    public:
-    Node(int data){
-        this->data = data;
-        this->prev = nullptr;
-        this->next = nullptr;
+
+      public:
+    Node(int data1,Node* next1,Node* prev1){
+        data = data1;
+        next = next1;
+        prev= prev1;
     }
 
+
     public:
-    Node(int data,Node* next,Node* prev){
-        this->data = data;
-        this->next = next;
-        this->prev= prev;
+    Node(int data1){
+
+         data = data1;
+         next = nullptr;
+         prev = nullptr;
+
     }
+
 
 };
 
-Node* ConvertArr2LL(vector<int> arr){
+Node* ConvertArr2DLL(vector<int> arr){
     Node* head = new Node(arr[0]);
     Node* temp = head;
     for(int i=1;i<arr.size();i++){
@@ -46,34 +51,42 @@ void print(Node* head){
 
 Node* DeleteHead(Node* head){
     if(head == nullptr || head ->next == nullptr){
+
         delete head;
         return nullptr;
+
     }
-    Node* prev = head;
+
+    Node* back = head;
     head = head->next;
-    head-> prev = nullptr;
-    prev->next = nullptr;
-    delete prev;
+    head-> prev = nullptr; //connection cut
+    back->next =  nullptr; //connection cut
+    delete back;
     return head;
+
 }
+
 Node * deleteLastNode(Node *head) {
     if(head == nullptr || head->next == nullptr){
         delete head;
         return nullptr;
     }
+
     Node* tail = head;
     while(tail->next != nullptr){
+
         tail = tail->next;
     }
+
     Node* secondLast = tail->prev;
-    tail->prev = nullptr;
+    tail->prev = nullptr;  //connection cut
     secondLast->next = nullptr;
     delete tail;
     return head;
 }
 Node* removeKthElement(Node* head,int k)
 {
-    if(head==NULL ) return NULL;
+    if(head==NULL) return NULL;
     int cnt=0;
 
     Node* kNode=head;
@@ -85,23 +98,23 @@ Node* removeKthElement(Node* head,int k)
         if(cnt==k) break;
         kNode=kNode->next;
     }
-    Node* prev= kNode->prev;
+    Node* back= kNode->prev;
     Node* front= kNode->next;
 
-    if(prev==NULL && front==NULL)
+    if(back==NULL && front==NULL)
           return NULL;
 
-    else if(prev==NULL)
+    else if(back==NULL)
          return DeleteHead(head);
 
     else if(front==NULL)
          return deleteLastNode(head);
 
-    prev->next= front;
-    front->prev=prev;
+    back->next= front;
+    front->prev=back;
 
-    kNode->next=nullptr;
-    kNode->prev=nullptr;
+    kNode->next=nullptr;  //connection cut
+    kNode->prev=nullptr;   //connection cut
     delete kNode;
     return head;
 
@@ -120,7 +133,7 @@ void deleteNode(Node* temp)
 
 
               back -> next= nullptr;
-              front->prev = nullptr;
+              front->prev = nullptr; //connection cut
               free(temp);
               return;
 
@@ -129,8 +142,8 @@ void deleteNode(Node* temp)
               back -> next= front;
               front->prev = back;
 
-            temp ->next = nullptr;
-            temp ->prev = nullptr;
+            temp ->next = nullptr; //connection cut
+            temp ->prev = nullptr;  //connection cut
              free(temp);
     }
 
@@ -140,12 +153,13 @@ int main()
 {
     vector<int> arr = {12, 5, 8, 7};
     int n = arr.size();
-    Node* head = ConvertArr2LL(arr);
-   // head= deleteElement(head,5);
+    Node* head = ConvertArr2DLL(arr);
+//   head= deleteElement(head,5);
 
-  // head= removeKthElement(head,1);
-   // head= deleteLastNode(head);
-   deleteNode(head->next->next);
+  //head= removeKthElement(head,4);
+ //head= deleteLastNode(head);
+  // head= DeleteHead(head);
+  // deleteNode(head->next->next);
     print(head);
     return 0;
 }

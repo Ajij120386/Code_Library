@@ -5,29 +5,36 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* prev;
     Node* next;
+    Node* prev;
 
-    public:
-    Node(int data){
-        this->data = data;
-        this->prev = nullptr;
-        this->next = nullptr;
+
+      public:
+    Node(int data1,Node* next1,Node* prev1){
+        data = data1;
+        next = next1;
+        prev= prev1;
     }
 
+
     public:
-    Node(int data,Node* next,Node* prev){
-        this->data = data;
-        this->next = next;
-        this->prev= prev;
+    Node(int data1){
+
+         data = data1;
+         next = nullptr;
+         prev = nullptr;
+
     }
+
 
 };
 
-Node* ConvertArr2LL(vector<int> arr){
+Node* ConvertArr2DLL(vector<int>&arr){
+
     Node* head = new Node(arr[0]);
     Node* temp = head;
     for(int i=1;i<arr.size();i++){
+
         Node* newNode= new Node(arr[i],nullptr,temp);
         temp->next = newNode;
         temp = newNode;
@@ -36,17 +43,20 @@ Node* ConvertArr2LL(vector<int> arr){
 }
 
 void print(Node* head){
+
     Node* temp = head;
-    while(temp != nullptr){
+    while(temp != NULL){
         cout << temp->data << ' ';
         temp = temp-> next;
     }
 
 }
 Node* InsertBeforeHead(Node* head,int val){
+
     if(head == nullptr){
         return new Node(val);
     }
+
     Node* newNode = new Node(val,head,nullptr);
     head -> prev= newNode;
     return newNode;
@@ -62,6 +72,8 @@ Node* InsertBeforeTail(Node* head,int val){
 
         return InsertBeforeHead(head,val);
     }
+
+
     Node* tail = head;
     while(tail->next != nullptr){
         tail =tail->next;
@@ -69,13 +81,14 @@ Node* InsertBeforeTail(Node* head,int val){
 
     Node* back=tail->prev;
     Node* newNode = new Node(val,tail,back);
-     back->next = newNode;
-     tail->prev=newNode;
+     back->next = newNode;  //connection setup
+     tail->prev=newNode;  ////connection setup
 
     return head;
 
 }
 Node* InsertBeforeKthElement(Node* head,int k,int val){
+
 
     if(head == nullptr){
         return new Node(val);
@@ -99,8 +112,8 @@ Node* InsertBeforeKthElement(Node* head,int k,int val){
 
         Node* back = temp->prev;
         Node* newNode = new Node(val,temp,back);
-        back->next = newNode;
-        temp->prev= newNode;
+        back->next = newNode;//connection setup
+        temp->prev= newNode; //connection setup
         return head;
 
 }
@@ -113,8 +126,8 @@ void InsertBeforeNode(Node* node, int val)
 
             Node* back = node->prev;
             Node* newNode =new Node(val,node,back);
-            back->next=newNode;
-            node->prev=newNode;
+            back->next=newNode; //connection setup
+            node->prev=newNode; //connection setup
 
 
     }
@@ -124,7 +137,7 @@ int main()
 {
     vector<int> arr = {12, 5, 8, 7};
     int n = arr.size();
-    Node* head = ConvertArr2LL(arr);
+    Node* head = ConvertArr2DLL(arr);
 
 
      //head = InsertBeforeHead(head,10);

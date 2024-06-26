@@ -43,9 +43,12 @@ int lengthofLL(Node* head)
 
     while(tmp)
     {
+         cout<<tmp->data<<" ";
+           tmp=tmp->next;
+
         cnt++;
 
-       tmp=tmp->next;
+
     }
 
     return cnt;
@@ -192,6 +195,8 @@ Node* insertTail(Node* head,int val)
 
 }
 
+
+
 Node* insertPosition(Node* head,int el,int k)
 {
 
@@ -201,7 +206,7 @@ Node* insertPosition(Node* head,int el,int k)
         if(k==1)
              return new Node(el);
         else
-            return head;
+            return NULL;
     }
 
     if(k==1)
@@ -217,7 +222,13 @@ Node* insertPosition(Node* head,int el,int k)
         cnt++;
         if(cnt==k-1)
         {
+            /*
+                Node* x=new Node(el);
+                x->next=tmp->next;
+            */
             Node* x=new Node(el,tmp->next);
+
+
             tmp->next=x;
             break;
         }
@@ -244,6 +255,9 @@ Node* insertBeforeValue(Node* head,int el,int val)
 
 
     Node* tmp =head;
+
+    //tmp->nxt!=NULL   bcz we have to insert element  berfore val
+
     while(tmp->next!=NULL)
     {
 

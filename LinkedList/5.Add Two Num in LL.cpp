@@ -1,8 +1,15 @@
-// given two number as linkedlist form  and construct one liskedlist for the sum of two number;
-// https://leetcode.com/problems/add-two-numbers/solutions/5298475/easy-to-understand-o-n-solution-add-two-number/
-// Time complexity = O(n)
+
+
+/*
+Time Complexity: O(max(m,n)). Assume that m and n represent the length of l1 and l2 respectively, the algorithm above iterates at most max(m,n) times.
+
+Space Complexity: O(max(m,n)). The length of the new list is at most max(m,n)+1.
+*/
 
 Node *addTwoNumbers(Node *num1, Node *num2)
+
+
+
 {
    Node *dummyHead = new ListNode(-1);
    Node *curr = dummyHead ;
@@ -39,3 +46,4 @@ Node *addTwoNumbers(Node *num1, Node *num2)
     }
     return dummyHead->next;
 }
+

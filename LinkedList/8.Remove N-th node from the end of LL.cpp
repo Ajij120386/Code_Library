@@ -1,4 +1,6 @@
-/*
+/*/* *****************************BruteForce**************************************
+
+
    Time Complexity: O(L)+O(L-N), We are calculating the length of the linked list and then iterating up to the (L-N)th node of the linked list, where L is the total length of the list.
 
    Space Complexity:  O(1), as we have not used any extra space.
@@ -94,7 +96,8 @@ int main() {
 
 
 
-/*
+/*/* *****************************Optimal**************************************
+
  Time Complexity: O(N) since the fast pointer will traverse the entire linked list, where N is the length of the linked list.
 
  Space Complexity: O(1), as we have not used any extra space.

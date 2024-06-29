@@ -11,7 +11,7 @@ Node *addTwoNumbers(Node *num1, Node *num2)
 
 
 {
-   Node *dummyHead = new ListNode(-1);
+   Node *dummyHead = new Node(-1);
    Node *curr = dummyHead ;
    Node *temp1 = num1;
    Node *temp2 = num2;

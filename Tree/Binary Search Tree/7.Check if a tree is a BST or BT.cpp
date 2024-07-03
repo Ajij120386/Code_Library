@@ -40,19 +40,17 @@ We can also use Inorder because Inorder of BST is sorted. so we can just do inor
  transversal and use a previous pointer which track previous number.
 */
 
-public boolean isValidBST(TreeNode root) {
-        inorder(root);
-        return flag;
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        TreeNode* prev = NULL;
+        return validate(root, prev);
     }
-    boolean flag = true;
-    long prev = Long.MIN_VALUE;
-    private void inorder(TreeNode root) {
-        if(root == null)    return;
-        inorder(root.left);
-        if(prev >= root.val){
-            flag = false;
-            return;
-        }
-        else    prev = root.val;
-        inorder(root.right );
+    bool validate(TreeNode* node, TreeNode* &prev) {
+        if (node == NULL) return true;
+        if (!validate(node->left, prev)) return false;
+        if (prev != NULL && prev->val >= node->val) return false;
+        prev = node;
+        return validate(node->right, prev);
     }
+};

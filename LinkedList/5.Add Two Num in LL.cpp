@@ -1,49 +1,52 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+
+         ListNode* dummyHead=new  ListNode(-1);
+
+            ListNode* curr=dummyHead;
+
+            int carry=0;
+
+            while(l1!=NULL ||  l2!=NULL || carry)
+            {
+
+               int sum=carry;
+                if(l1){
+
+                    sum+=l1->val;
+                    l1=l1->next;
+                }
+                if(l2)
+                {
+                    sum+=l2->val;
+                    l2=l2->next;
+                }
 
 
-/*
-Time Complexity: O(max(m,n)). Assume that m and n represent the length of l1 and l2 respectively, the algorithm above iterates at most max(m,n) times.
+                ListNode* newNode=new ListNode(sum%10);
+                carry=sum/10;
+                curr->next=newNode;
+                curr=curr->next;
 
-Space Complexity: O(max(m,n)). The length of the new list is at most max(m,n)+1.
-*/
-
-Node *addTwoNumbers(Node *num1, Node *num2)
-
+            }
 
 
-{
-   Node *dummyHead = new Node(-1);
-   Node *curr = dummyHead ;
-   Node *temp1 = num1;
-   Node *temp2 = num2;
 
-    int sum = 0, carry = 0;
+     return dummyHead->next;
 
-    while (temp1 != NULL || temp2 != NULL)
-    {
-        sum = carry;
-        if (temp1)
-            sum += temp1->data;
-        if (temp2)
-            sum += temp2->data;
 
-        ListNode *newNode = new Node(sum % 10);
 
-        carry = sum / 10;
 
-        curr->next = newNode;
-
-        curr = curr->next;
-
-        if (temp1)
-            temp1 = temp1->next;
-        if (temp2)
-            temp2 = temp2->next;
     }
-    if (carry)
-    {
-        ListNode newNode = new Node(carry);
-        curr->next =newNode;
-    }
-    return dummyHead->next;
-}
-
+};

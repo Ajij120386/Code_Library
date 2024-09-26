@@ -1,3 +1,114 @@
+
+///////////////////////////////USING FOR LOOP
+
+class Solution {
+public:
+
+  vector<vector<int>>ans;
+  void f( int ind,vector<int>&tmp, vector<int>&nums,int n,int t)
+   {
+
+
+     if (ind<0) return;
+     if(t==0){
+
+            ans.push_back(tmp);
+
+            return;
+
+     }
+
+
+       for(int i=ind;i<n;i++)
+       {
+
+            if(i!=ind && nums[i]==nums[i-1]) continue;
+
+
+                 tmp.push_back(nums[i]);
+               f(i+1,tmp,nums,n,t-nums[i]);
+                tmp.pop_back();
+
+       }
+
+   }
+
+    vector<vector<int>> combinationSum2(vector<int>& nums, int target) {
+
+
+       sort(nums.begin(),nums.end());
+      vector<int>tmp;
+
+      int n=nums.size();
+      f(0,tmp,nums,n,target);
+
+        return ans;
+
+    }
+};
+
+/////USING PICK & NOT PICK TECHNIQUE BOTTOM_UP
+
+    class Solution {
+public:
+
+
+   vector<vector<int>>ans;
+  void f( int ind,vector<int>&tmp, vector<int>&nums,int n,int t)
+{
+
+
+    if(ind==n){
+
+           if(t==0)
+            ans.push_back(tmp);
+
+            return;
+       }
+
+
+
+
+
+                  if(nums[ind]<=t)
+             {
+                 tmp.push_back(nums[ind]);
+
+                f(ind+1,tmp,nums,n,t-nums[ind]);
+                tmp.pop_back();
+             }
+       while(ind+1<n && nums[ind]==nums[ind+1]) ind++;
+                f(ind+1,tmp,nums,n,t);
+
+   }
+
+
+
+
+
+
+
+
+
+    vector<vector<int>> combinationSum2(vector<int>& nums, int target) {
+
+
+       sort(nums.begin(),nums.end());
+      vector<int>tmp;
+
+      int n=nums.size();
+      f(0,tmp,nums,n,target);
+
+        return ans;
+
+    }
+};
+
+
+////////////////
+/////USING PICK & NOT PICK TECHNIQUE UP DOWN
+
+
 class Solution {
 public:
 

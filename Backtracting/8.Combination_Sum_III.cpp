@@ -62,48 +62,42 @@ public:
 class Solution {
 public:
 
-     vector<vector<int>>result;
+    
+     vector<vector<int>> res;
+     vector<int>tmp;
+   
+   void f(int val,int  T, int k)
+   {
+         
 
-   void func(int ind,vector<int>&curr,int T,int k)
-  {
-
-  if(curr.size()==k){
-
-    if(T==0)
+         if(T<0 || tmp.size()>k return;
+         
+         if(k==0 && T==0)
      {
-         result.push_back(curr);
+          res.push_back(tmp);
+
+          return;
+     
       }
-     return;
-  }
+            
+        
+        for(int i=val;i<=9;i++)
+        {
+            
+
+              tmp.push_back(i);
+              f(i+1,T-i,k-1);
+             tmp.pop_back();
 
 
-    for(int i=ind;i<=9;i++)
-    {
-          if(T>=i){
-
-          curr.push_back(i);
-      func(i+1,curr,T-i,k);
-         curr.pop_back();
-
-
-     }
-
-    }
-
-
-
-
-
-  }
-
+        }
+    
+   }
+  
     vector<vector<int>> combinationSum3(int k, int n) {
 
-
-
-
-        vector<int>tmp;
-        func(1,tmp,n,k);
-        return result;
-
+        f(1,n,k);
+        return res;
+        
     }
 };

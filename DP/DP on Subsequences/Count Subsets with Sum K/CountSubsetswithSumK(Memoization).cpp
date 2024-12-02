@@ -3,7 +3,12 @@
 using namespace std;
 
 int f(int ind, vector< int> &arr,int T,vector<vector<int>>&dp)
+
 {
+
+  /// if(ind<0) return T==0;   this condition works for both case ,so we try to use this ,so all problem solve easily;
+
+
     /*
           //when our array constraint 1<=arr[i],then this base case will use
 

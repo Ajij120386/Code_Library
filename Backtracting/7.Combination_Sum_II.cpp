@@ -9,7 +9,7 @@ public:
    {
 
 
-     if (ind<0) return;
+     if (ind<0 || t<0) return;
      if(t==0){
 
             ans.push_back(tmp);
@@ -26,7 +26,7 @@ public:
 
 
                  tmp.push_back(nums[i]);
-               f(i+1,tmp,nums,n,t-nums[i]);
+               f(i+1,tmp,nums,n,t-nums[i]);  //The same number may not be chosen from candidates an unlimited number of times
                 tmp.pop_back();
 
        }

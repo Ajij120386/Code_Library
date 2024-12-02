@@ -9,8 +9,10 @@ public:
   void f( int ind,vector<int>&tmp, vector<int>&nums,int n,int t)
    {
 
+if (t<0) return;
 
-     if (t<0) return;
+     // if (ind<0) return;
+
      if(t==0){
 
             ans.push_back(tmp);

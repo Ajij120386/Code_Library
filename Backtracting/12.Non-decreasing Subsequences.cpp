@@ -1,3 +1,49 @@
+
+/*********Approach----1******************
+class Solution {
+public:
+
+ int n;
+ vector<vector<int>>result;
+
+    void backtrack(vector<int>& nums, int ind, vector<int>& curr) {
+
+        if(curr.size() > 1)
+            result.push_back(curr);
+        
+        unordered_set<int> st;
+        for(int i = ind; i<n; i++) {
+            if((curr.empty() || nums[i]  >= curr.back()) && st.find(nums[i]) == st.end()) {
+                
+                curr.push_back(nums[i]);
+                backtrack(nums, i+1, curr);
+                curr.pop_back();
+                
+                st.insert(nums[i]); //eta exlude include kora ssesh 
+            }
+        }
+    }
+    
+    vector<vector<int>> findSubsequences(vector<int>& nums) {
+        
+        n = nums.size();
+       
+    
+        
+        vector<int> curr;
+        
+        backtrack(nums, 0, curr);
+        
+        return result;
+    }
+
+};
+
+//*********Approach----2******************
+
+
+
+
 class Solution {
 public:
 

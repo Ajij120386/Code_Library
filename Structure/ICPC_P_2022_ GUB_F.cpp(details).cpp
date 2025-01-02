@@ -41,7 +41,7 @@ for(int i=0;i<n;i++){
   for(int i=0;i<n;i++){
 
         mp[a[i].email]=a[i].bg;
-        mp1[a[i].email]=a[i].birth.substr(6,9);
+        mp1[a[i].email]=a[i].birth.substr(6,4);
   }
    cout<<endl;
   cout<<endl;

@@ -9,7 +9,7 @@ using namespace std;
 // x: element to find square root
 class Solution{
   public:
-    long long int floorSqrt(long long int x)
+    double floorSqrt(long long int x)
     {
         // Your code goes here
         double l=0,r=x;
@@ -34,7 +34,9 @@ int main()
 		long long n;
 		cin>>n;
 		Solution obj;
-		cout << obj.floorSqrt(n) << endl;
+		double val= obj.floorSqrt(n);
+		cout << setprecision(9);
+		cout<<val << endl;
 	}
     return 0;
 }

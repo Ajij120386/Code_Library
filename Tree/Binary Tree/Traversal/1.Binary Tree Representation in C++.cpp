@@ -1,12 +1,14 @@
 
 
 #include <iostream>
+using namespace std;
 
 // Structure definition for
 // a node in a binary tree
-struct Node {
+class Node {
     // Defining the value of
     // the node (integer data)
+    public:
     int data;
      // Reference pointer to
      // the left child node

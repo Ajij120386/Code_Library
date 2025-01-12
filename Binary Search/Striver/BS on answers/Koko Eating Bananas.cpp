@@ -20,7 +20,7 @@ int calculateTotalHours(vector<int> &v, int hourly) {
     int n = v.size();
     //find total hours:
     for (int i = 0; i < n; i++) {
-        totalH += ceil((double)(v[i]) / (double)(hourly));
+        totalH += ceil((double)(v[i]) / (double)(hourly));   //totalH+=  ( v[i]+ hourly-1) / hourly;
     }
     return totalH;
 }
